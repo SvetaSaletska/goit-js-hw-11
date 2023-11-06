@@ -16,7 +16,7 @@ const elements = {
 const gallareDiv = elements.divGallery;
 // let searchQuery = null;
 let queryFetch = '';
-let pageFetch = '1';
+let pageFetch = '';
 
 elements.form.addEventListener ('submit', onSubmitForm);
 
@@ -103,5 +103,6 @@ function smoothScroll() {
       behavior: 'smooth',
   });
 }
+
 
 export { gallareDiv };

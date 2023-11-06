@@ -34,9 +34,9 @@ function onSubmitForm(evt) {
     return;
   }
   queryFetch = query;
-  // obsScroll.observe(elements.target);
+  obsScroll.observe(elements.target);
   elements.divGallery.innerHTML = '';
-  // pageFetch = 1;
+  pageFetch = 1;
   firstNumberImg(queryFetch, pageFetch);
   elements.form.reset();
 }
@@ -60,7 +60,7 @@ const firstNumberImg = async (queryFetch, pageFetch) => {
 
       if (pageFetch === 1) {
           Notify.success(`Hooray! We found ${data.totalHits} images.`);
-          obsScroll.observe(ref.target);
+          // obsScroll.observe(elements.target);
       }
       if (data.totalHits <= pageFetch * limitPage) {
           Notify.failure(
@@ -85,9 +85,9 @@ function onObsScroll(entries) {
         renderImg(data);
         simpleBox.refresh();
         if (pageFetch > data.totalHits / limitPage) {
-            obsScroll.unobserve(ref.target);
+            obsScroll.unobserve(elements.target);
         }
-    })
+      })
     .catch(err => Notify.failure(err.message))
     .finally(() => Loading.remove());
     }
@@ -104,5 +104,25 @@ function smoothScroll() {
   });
 }
 
+// async function loadMore() {
+//     if (isGalleryLoaded) {
+//         currentPage++;
+//         showLoader()
+//             const images = await searchImages(currentQuery);
+//             if (images.length === 0) {
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Oops...',
+//                     text: "We're sorry, but you've reached the end of search results for images.",
+//                 });
+//                 observer.unobserve(guard);
+//             } else {
+//                 // Обработка загруженных изображений
+//                 renderImages(images);
+//                 scrollToNextGroup();
+//             }
+//         }
+//         hideLoader();
+//     }
 
 export { gallareDiv };
